@@ -16,7 +16,27 @@ function drawGame() {
     requestAnimationFrame(drawGame);
     clearScreen();
     inputs();
+    boundryCheck();
     drawGreenBlob();
+}
+
+function boundryCheck(){
+    //up
+    if (y < radius){
+        y = radius;
+    }
+    //down
+    if (y > canvas.height - radius){
+        y = canvas.height - radius;
+    }
+    //left
+    if (x < radius){
+        x = radius;
+    }
+    //right
+    if (x > canvas.width - radius){
+        x = canvas.width - radius;
+    }
 }
 
 function inputs(){
