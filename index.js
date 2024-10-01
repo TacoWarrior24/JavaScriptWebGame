@@ -3,8 +3,12 @@ const ctx = canvas.getContext("2d");
 
 let x = 100;
 let y = 100;
+
+let red_x = 300;
+let red_y = 300;
+
 let radius = 50;
-let speed = 10;
+let speed = 5;
 
 let downPressed = false;
 let upPressed = false;
@@ -17,6 +21,7 @@ function drawGame() {
     clearScreen();
     inputs();
     boundryCheck();
+    drawRedBlob();
     drawGreenBlob();
 }
 
@@ -58,6 +63,13 @@ function drawGreenBlob() {
     ctx.fillStyle = "green";
     ctx.beginPath();
     ctx.arc(x,y, radius,0, Math.PI * 2);
+    ctx.fill();
+}
+
+function drawRedBlob() {
+    ctx.fillStyle = "red";
+    ctx.beginPath();
+    ctx.arc(red_x,red_y, radius/2 ,0, Math.PI * 2);
     ctx.fill();
 }
 
