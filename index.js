@@ -4,11 +4,11 @@ const ctx = canvas.getContext("2d");
 let x = 100;
 let y = 100;
 
-let red_x = 300;
-let red_y = 300;
-
 let radius = 50;
 let speed = 5;
+
+let red_x = randomNumber(radius, canvas.width);
+let red_y = randomNumber(radius, canvas.height);
 
 let downPressed = false;
 let upPressed = false;
@@ -21,6 +21,7 @@ function drawGame() {
     clearScreen();
     inputs();
     boundryCheck();
+    gameLoop();
     drawRedBlob();
     drawGreenBlob();
 }
@@ -59,17 +60,21 @@ function inputs(){
     }
 }
 
-function drawGreenBlob() {
-    ctx.fillStyle = "green";
-    ctx.beginPath();
-    ctx.arc(x,y, radius,0, Math.PI * 2);
-    ctx.fill();
-}
+function gameLoop() {
+    
+};
 
 function drawRedBlob() {
     ctx.fillStyle = "red";
     ctx.beginPath();
     ctx.arc(red_x,red_y, radius/2 ,0, Math.PI * 2);
+    ctx.fill();
+}
+
+function drawGreenBlob() {
+    ctx.fillStyle = "green";
+    ctx.beginPath();
+    ctx.arc(x,y, radius,0, Math.PI * 2);
     ctx.fill();
 }
 
@@ -119,6 +124,9 @@ function keyUp(event){
     }
 }
 
+function randomNumber(min, max) {
+    return Math.random() * (max - min) + min;
+}
 
 drawGame();
 //setInterval(drawGame,1000/60);
