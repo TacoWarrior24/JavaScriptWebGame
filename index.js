@@ -7,8 +7,9 @@ let y = 100;
 let radius = 50;
 let speed = 5;
 
-let red_x = randomNumber(radius, canvas.width);
-let red_y = randomNumber(radius, canvas.height);
+let red_radius = 25;
+let red_x = randomNumber(red_radius, canvas.width - red_radius);
+let red_y = randomNumber(red_radius, canvas.height - red_radius);
 
 let downPressed = false;
 let upPressed = false;
@@ -24,6 +25,7 @@ function drawGame() {
     gameLoop();
     drawRedBlob();
     drawGreenBlob();
+    gameLoop();
 }
 
 function boundryCheck(){
@@ -61,13 +63,27 @@ function inputs(){
 }
 
 function gameLoop() {
-    
+    let dx = x - red_x;
+    let dy = y - red_y;
+    let distance = Math.sqrt(dx * dx + dy * dy);
+    let sumOfRaddii = radius + red_radius
+
+    if (distance + 15 < sumOfRaddii){
+        console.log("collision!")
+        red_x = randomNumber(red_radius, canvas.width - red_radius);
+        red_y = randomNumber(red_radius, canvas.height - red_radius);
+    } else if (distance == sumOfRaddii){
+        //perfect edge
+    } else if (distance > sumOfRaddii){
+        //no collision
+    }
+
 };
 
 function drawRedBlob() {
     ctx.fillStyle = "red";
     ctx.beginPath();
-    ctx.arc(red_x,red_y, radius/2 ,0, Math.PI * 2);
+    ctx.arc(red_x,red_y, red_radius ,0, Math.PI * 2); //update this if red circle changes size
     ctx.fill();
 }
 
