@@ -72,6 +72,12 @@ function gameLoop() {
         console.log("collision!")
         red_x = randomNumber(red_radius, canvas.width - red_radius);
         red_y = randomNumber(red_radius, canvas.height - red_radius);
+
+        const scoreElement = document.getElementById('score');
+        let currentScore = parseInt(scoreElement.textContent.replace('Score: ', ''));
+        currentScore++;
+        scoreElement.textContent = `Score: ${currentScore}`;
+
     } else if (distance == sumOfRaddii){
         //perfect edge
     } else if (distance > sumOfRaddii){
