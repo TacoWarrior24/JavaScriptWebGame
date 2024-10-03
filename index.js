@@ -11,6 +11,8 @@ let red_radius = 25;
 let red_x = randomNumber(red_radius, canvas.width - red_radius);
 let red_y = randomNumber(red_radius, canvas.height - red_radius);
 
+let currentScore = 0;
+
 let downPressed = false;
 let upPressed = false;
 let leftPressed = false;
@@ -74,7 +76,6 @@ function gameLoop() {
         red_y = randomNumber(red_radius, canvas.height - red_radius);
 
         const scoreElement = document.getElementById('score');
-        let currentScore = parseInt(scoreElement.textContent.replace('Score: ', ''));
         currentScore++;
         scoreElement.textContent = `Score: ${currentScore}`;
 
