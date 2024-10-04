@@ -14,6 +14,8 @@ const neonColors = [
     '#FF4500'  // Neon Orange Red
 ];
 
+let drawGameBoard = true //turn on and off the game
+
 let timeElapsed = 0; // Start time from 0 seconds
 let timerInterval;
 const timerElement = document.getElementById('time');
@@ -34,9 +36,10 @@ let upPressed = false;
 let leftPressed = false;
 let rightPressed = false;
 
+var audio = new Audio("sounds/music.mp3")
+
 //Game Loop
 function drawGame() {
-    requestAnimationFrame(drawGame);
     clearScreen();
     inputs();
     boundryCheck();
@@ -44,6 +47,9 @@ function drawGame() {
     drawRedBlob();
     drawGreenBlob();
     gameLoop();
+    if (drawGameBoard){
+    requestAnimationFrame(drawGame);
+    }
 }
 
 function boundryCheck(){
@@ -96,11 +102,15 @@ function gameLoop() {
 
         if (!timerInterval) {
             startCounting();
+            audio.play();
+
         }
 
-        if (currentScore == 10){
+        if (currentScore == 100){
             clearInterval(timerInterval); 
             timerInterval = null;
+            audio.pause();
+            drawGameBoard = false;
         }
 
         const color1 = neonColors[Math.floor(Math.random() * neonColors.length)];
