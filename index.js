@@ -14,9 +14,12 @@ const neonColors = [
     '#FF4500'  // Neon Orange Red
 ];
 
+let timeElapsed = 0; // Start time from 0 seconds
+let timerInterval;
+const timerElement = document.getElementById('time');
+
 let x = 100;
 let y = 100;
-
 let radius = 50;
 let speed = 5;
 
@@ -91,6 +94,15 @@ function gameLoop() {
         currentScore++;
         scoreElement.textContent = `Score: ${currentScore}`;
 
+        if (!timerInterval) {
+            startCounting();
+        }
+
+        if (currentScore == 10){
+            clearInterval(timerInterval); 
+            timerInterval = null;
+        }
+
         const color1 = neonColors[Math.floor(Math.random() * neonColors.length)];
         const color2 = neonColors[Math.floor(Math.random() * neonColors.length)];
 
@@ -103,6 +115,19 @@ function gameLoop() {
     }
 
 };
+
+function startCounting() {
+    const startTime = Date.now();
+
+    timerInterval = setInterval(function() {
+        const currentTime = Date.now(); 
+        timeElapsed = currentTime - startTime; 
+
+        const seconds = (timeElapsed / 1000).toFixed(3); 
+
+        timerElement.textContent = seconds;
+    }, 10); 
+}
 
 function drawRedBlob() {
     ctx.fillStyle = "red";

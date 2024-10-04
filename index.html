@@ -9,17 +9,18 @@
             border:4px solid black;
         }
 
+        #timer {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
         body{
             height: 100vh;
-            /*background: linear-gradient(
-                0deg,
-                rgba(34,193,195,1) 0%,
-                rgba(253,187,45,1) 100%
-                );*/
             text-align: center;
             overflow: hidden; /*Hide Scrollbars*/
         }
-        h1,h2{
+        h1,h2, #timer{
             font-family: Comic Sans MS;
         }
     </style>
@@ -27,7 +28,10 @@
 <body>
     <h1>Green Blob</h1>
     <canvas id = "gameArea" width="800" height="600"></canvas>
-    <script src="index.js"></script>
     <h2 id = "score">Use the arrows keys to move the green blob to the red blob.</h2>
+
+    <div id="timer">Time Elapsed: <span id="time">0.000</span> seconds</div>
+
+    <script src="index.js"></script>
 </body>
 </html>
