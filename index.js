@@ -1,6 +1,19 @@
 const canvas = document.getElementById("gameArea")
 const ctx = canvas.getContext("2d");
 
+const neonColors = [
+    '#39FF14', // Neon Green
+    '#FF073A', // Neon Red
+    '#0FF0FC', // Neon Cyan
+    '#FF77FF', // Neon Pink
+    '#FFD700', // Neon Yellow
+    '#FF1493', // Neon Deep Pink
+    '#32CD32', // Neon Lime Green
+    '#8A2BE2', // Neon Purple
+    '#00CED1', // Neon Turquoise
+    '#FF4500'  // Neon Orange Red
+];
+
 let x = 100;
 let y = 100;
 
@@ -71,13 +84,15 @@ function gameLoop() {
     let sumOfRaddii = radius + red_radius
 
     if (distance + 15 < sumOfRaddii){
-        console.log("collision!")
         red_x = randomNumber(red_radius, canvas.width - red_radius);
         red_y = randomNumber(red_radius, canvas.height - red_radius);
 
         const scoreElement = document.getElementById('score');
         currentScore++;
         scoreElement.textContent = `Score: ${currentScore}`;
+
+        const randomColor = neonColors[Math.floor(Math.random() * neonColors.length)];
+        document.body.style.backgroundColor = randomColor;
 
     } else if (distance == sumOfRaddii){
         //perfect edge
