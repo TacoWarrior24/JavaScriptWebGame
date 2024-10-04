@@ -91,8 +91,10 @@ function gameLoop() {
         currentScore++;
         scoreElement.textContent = `Score: ${currentScore}`;
 
-        const randomColor = neonColors[Math.floor(Math.random() * neonColors.length)];
-        document.body.style.backgroundColor = randomColor;
+        const color1 = neonColors[Math.floor(Math.random() * neonColors.length)];
+        const color2 = neonColors[Math.floor(Math.random() * neonColors.length)];
+
+        document.body.style.background = `linear-gradient(180deg, ${color1}, ${color2})`;
 
     } else if (distance == sumOfRaddii){
         //perfect edge
